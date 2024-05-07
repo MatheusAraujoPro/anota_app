@@ -1,5 +1,5 @@
 android {
-    namespace 'com.example.modulartemplate'
+    namespace 'com.matddev.anotaapp'
     compileSdk  34
 
     defaultConfig {

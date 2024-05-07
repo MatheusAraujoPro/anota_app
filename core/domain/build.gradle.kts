@@ -6,7 +6,7 @@ plugins {
 apply(from = "${rootProject.projectDir}/android-common.gradle")
 
 android {
-    namespace = "com.example.core.domain"
+    namespace = "com.matddev.anotaapp.core.domain"
 }
 
 dependencies {

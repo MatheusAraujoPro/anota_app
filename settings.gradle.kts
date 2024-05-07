@@ -15,7 +15,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "modulartemplate"
+rootProject.name = "anotaapp"
 include(":app")
 include(":core")
 include(":ui")
