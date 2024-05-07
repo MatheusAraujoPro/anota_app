@@ -6,11 +6,11 @@ plugins {
 apply(from = "${rootProject.projectDir}/android-common.gradle")
 
 android {
-    namespace = "com.example.modulartemplate"
+    namespace = "com.matddev.anotaapp"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.modulartemplate"
+        applicationId = "com.matddev.anotaapp"
         targetSdk = 33
         versionCode = 1
         versionName = "1.0"

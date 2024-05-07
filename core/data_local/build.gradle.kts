@@ -9,7 +9,7 @@ plugins {
 apply(from = "${rootProject.projectDir}/android-common.gradle")
 
 android {
-    namespace = "com.example.core.data_local"
+    namespace = "com.matddev.anotaapp.core.data_local"
 }
 dependencies {
     implementation(project(":core:domain"))

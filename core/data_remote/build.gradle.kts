@@ -6,7 +6,7 @@ plugins {
 apply(from = "${rootProject.projectDir}/android-common.gradle")
 
 android {
-    namespace = "com.example.core.data_remote"
+    namespace = "com.matddev.anotaapp.core.data_remote"
 }
 
 dependencies {

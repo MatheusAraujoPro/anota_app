@@ -7,7 +7,7 @@ plugins {
 apply(from = "${rootProject.projectDir}/android-common.gradle")
 
 android {
-    namespace = "com.example.feature"
+    namespace = "com.matddev.anotaapp.feature"
     compileSdk = 34
 
     buildFeatures{

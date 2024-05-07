@@ -6,7 +6,7 @@ plugins {
 apply(from = "${rootProject.projectDir}/android-common.gradle")
 
 android {
-    namespace = "com.example.ui"
+    namespace = "com.matddev.anotaapp.ui"
     compileSdk = 34
 
     buildFeatures{
