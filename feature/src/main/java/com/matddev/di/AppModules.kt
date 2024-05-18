@@ -12,10 +12,8 @@ import com.matddev.data_local.database.Database
 import com.matddev.data_source.RepoLocalDataSource
 import com.matddev.data_source.RepoRemoteDataSource
 import com.matddev.data_source.RepoRemoteDataSourceImpl
-import com.matddev.github.navigation.definition.GithubNavigation
-import com.matddev.github.navigation.implementation.GithubNavigationImpl
-import com.matddev.github.screens.bookmark_screen.BookmarkScreenViewModel
-import com.matddev.github.screens.list_screen.ListScreenViewModel
+import com.matddev.file_manager.navigation.definition.GithubNavigation
+import com.matddev.file_manager.navigation.implementation.GithubNavigationImpl
 import com.matddev.provideGitHubWebService
 import com.matddev.provideRetrofit
 import com.matddev.repository.RepoRepository
@@ -32,7 +30,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import org.koin.android.ext.koin.androidContext
-import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val appModules = module {
@@ -68,8 +65,6 @@ val repositoriesModules = module {
 }
 
 val viewModelModules = module {
-    viewModel { ListScreenViewModel(get(), get(), get(), get(), get()) }
-    viewModel { BookmarkScreenViewModel(get(), get()) }
 }
 
 val useCaseModules = module {

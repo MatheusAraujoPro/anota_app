@@ -4,8 +4,8 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.matddev.github.screens.list_screen.ListScreen
-import com.matddev.github.screens.bookmark_screen.Bookmark
+import com.matddev.file_manager.screens.list_screen.ListScreen
+import com.matddev.file_manager.screens.bookmark_screen.Bookmark
 
 @Composable
 fun Navigation(navHostController: NavHostController) {
