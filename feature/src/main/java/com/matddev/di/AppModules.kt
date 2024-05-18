@@ -18,13 +18,7 @@ import com.matddev.provideGitHubWebService
 import com.matddev.provideRetrofit
 import com.matddev.repository.RepoRepository
 import com.matddev.repository.RepoRepositoryImpl
-import com.matddev.use_case.DeleteLocalRepoUseCase
-import com.matddev.use_case.GetFilteredRepos
-import com.matddev.use_case.GetLocalFavoritedReposUseCase
-import com.matddev.use_case.GetLocalReposUseCase
-import com.matddev.use_case.GetPagingRepos
 import com.matddev.use_case.GetRepos
-import com.matddev.use_case.SaveLocalReposUseCase
 import com.matddev.utils.NavigationManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -69,12 +63,6 @@ val viewModelModules = module {
 
 val useCaseModules = module {
     factory { GetRepos(get()) }
-    factory { GetFilteredRepos() }
-    factory { GetPagingRepos(get()) }
-    factory { GetLocalReposUseCase(get()) }
-    factory { SaveLocalReposUseCase(get()) }
-    factory { GetLocalFavoritedReposUseCase(get()) }
-    factory { DeleteLocalRepoUseCase(get()) }
 }
 
 val networkModel = module {
