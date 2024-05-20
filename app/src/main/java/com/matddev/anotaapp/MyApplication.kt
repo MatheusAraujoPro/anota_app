@@ -3,7 +3,6 @@ package com.matddev.anotaapp
 import android.app.Application
 import com.matddev.di.appModules
 import com.matddev.di.dataSourceModules
-import com.matddev.di.databaseModule
 import com.matddev.di.navigationModel
 import com.matddev.di.networkModel
 import com.matddev.di.repositoriesModules
@@ -26,7 +25,6 @@ class MyApplication: Application() {
                 useCaseModules,
                 navigationModel,
                 mainModule,
-                databaseModule
             )
         }.androidContext(applicationContext)
     }
