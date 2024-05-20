@@ -5,16 +5,18 @@ import androidx.datastore.core.handlers.ReplaceFileCorruptionHandler
 import androidx.datastore.preferences.core.PreferenceDataStoreFactory
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.preferencesDataStoreFile
-import com.matddev.RepoConstants
-import com.matddev.file_manager.navigation.definition.GithubNavigation
-import com.matddev.file_manager.navigation.implementation.GithubNavigationImpl
+import com.matddev.Constants
+import com.matddev.file_manager.navigation.definition.FileManagerNavigation
+import com.matddev.file_manager.navigation.implementation.FileManagerNavigationImpl
+import com.matddev.file_manager.screens.create_files.CreateFileViewModel
 import com.matddev.repository.FileRepository
 import com.matddev.repository.FileRepositoryImpl
-import com.matddev.use_case.GetRepos
+import com.matddev.use_case.WriteFileUseCase
 import com.matddev.utils.NavigationManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val appModules = module {
@@ -23,7 +25,7 @@ val appModules = module {
             corruptionHandler = ReplaceFileCorruptionHandler(
                 produceNewData = { emptyPreferences() }
             ),
-            produceFile = { get<Context>().preferencesDataStoreFile(RepoConstants.Constants.DATA_STORE_NAME) }
+            produceFile = { get<Context>().preferencesDataStoreFile(Constants.Constants.DATA_STORE_NAME) }
         )
     }
 }
@@ -38,10 +40,11 @@ val repositoriesModules = module {
 }
 
 val viewModelModules = module {
+    viewModel { CreateFileViewModel() }
 }
 
 val useCaseModules = module {
-    factory { GetRepos(get()) }
+    factory { WriteFileUseCase(get()) }
 }
 
 val networkModel = module {
@@ -57,5 +60,5 @@ val navigationModel = module {
             )
         )
     }
-    single<GithubNavigation> { GithubNavigationImpl(get()) }
+    single<FileManagerNavigation> { FileManagerNavigationImpl(get()) }
 }
