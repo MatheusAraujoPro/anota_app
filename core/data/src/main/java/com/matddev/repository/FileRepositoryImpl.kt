@@ -8,18 +8,30 @@ import java.io.FileReader
 import java.io.FileWriter
 
 class FileRepositoryImpl : FileRepository {
-    override fun write(lines: List<String>, context: Context) {
-        val fileDir = context.filesDir
-        val file = File(fileDir.path)
-        val fileWriter = FileWriter(file)
+    override fun write(lines: List<String>, context: Context): Boolean {
+        val directory = File(context.filesDir, "financeNotes")
+        if (!directory.exists()) {
+            directory.mkdirs()
+        }
+
+        //TODO: i´VE TO THINK IN A LOGIC TO GENERATE THE FILE NAME
+
+        val newFile = File(directory, "Example.txt")
+
+        val fileWriter = FileWriter(newFile)
         val bufferedWriter = BufferedWriter(fileWriter)
 
-        lines.forEachIndexed { index, line ->
-            bufferedWriter.write(line)
-            if (index != lines.lastIndex)
-                bufferedWriter.newLine()
+        try {
+            lines.forEachIndexed { index, line ->
+                bufferedWriter.write(line)
+                if (index != lines.lastIndex)
+                    bufferedWriter.newLine()
+            }
+            bufferedWriter.close()
+            return true
+        } catch (ex: Exception) {
+            return false
         }
-        bufferedWriter.close()
     }
 
     override fun load(path: String, fileName: String): List<String> {
