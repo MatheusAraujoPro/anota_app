@@ -8,8 +8,9 @@ import java.io.FileReader
 import java.io.FileWriter
 
 class FileRepositoryImpl : FileRepository {
-    override fun write(lines: List<String>) {
-        val file = File("path do file")
+    override fun write(lines: List<String>, context: Context) {
+        val fileDir = context.filesDir
+        val file = File(fileDir.path)
         val fileWriter = FileWriter(file)
         val bufferedWriter = BufferedWriter(fileWriter)
 
