@@ -5,12 +5,11 @@ import androidx.datastore.core.handlers.ReplaceFileCorruptionHandler
 import androidx.datastore.preferences.core.PreferenceDataStoreFactory
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.preferencesDataStoreFile
-import com.matddev.RepoConstants
+import com.matddev.Constants
 import com.matddev.file_manager.navigation.definition.FileManagerNavigation
 import com.matddev.file_manager.navigation.implementation.FileManagerNavigationImpl
 import com.matddev.repository.FileRepository
 import com.matddev.repository.FileRepositoryImpl
-import com.matddev.use_case.GetRepos
 import com.matddev.utils.NavigationManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -23,7 +22,7 @@ val appModules = module {
             corruptionHandler = ReplaceFileCorruptionHandler(
                 produceNewData = { emptyPreferences() }
             ),
-            produceFile = { get<Context>().preferencesDataStoreFile(RepoConstants.Constants.DATA_STORE_NAME) }
+            produceFile = { get<Context>().preferencesDataStoreFile(Constants.Constants.DATA_STORE_NAME) }
         )
     }
 }
@@ -41,7 +40,7 @@ val viewModelModules = module {
 }
 
 val useCaseModules = module {
-    factory { GetRepos(get()) }
+//    factory { GetRepos(get()) }
 }
 
 val networkModel = module {
