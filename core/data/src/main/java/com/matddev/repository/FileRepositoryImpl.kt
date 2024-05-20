@@ -20,8 +20,8 @@ class FileRepositoryImpl : FileRepository {
         bufferedWriter.close()
     }
 
-    override fun read(): List<String> {
-        val file = File("path of file", "fileName")
+    override fun load(path: String, fileName: String): List<String> {
+        val file = File(path, fileName)
         val fileReader = FileReader(file)
         val bufferReader = BufferedReader(fileReader)
         var line: String?
