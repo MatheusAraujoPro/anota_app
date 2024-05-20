@@ -1,5 +1,6 @@
 package com.matddev.repository
 
+import android.content.Context
 import java.io.BufferedReader
 import java.io.BufferedWriter
 import java.io.File
@@ -32,5 +33,9 @@ class FileRepositoryImpl : FileRepository {
         }
         bufferReader.close()
         return lines
+    }
+
+    override fun loadAllFileNames(context: Context): Array<String> {
+        return context.fileList()
     }
 }
