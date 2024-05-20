@@ -1,6 +1,6 @@
-package com.matddev.github.navigation.implementation
+package com.matddev.file_manager.navigation.implementation
 
-import com.matddev.github.navigation.definition.GithubNavigation
+import com.matddev.file_manager.navigation.definition.GithubNavigation
 import com.matddev.utils.NavigationManager
 
 class GithubNavigationImpl(
