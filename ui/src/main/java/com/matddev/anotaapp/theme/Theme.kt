@@ -22,7 +22,7 @@ object Theme {
 }
 
 fun lightColors() = ThemeColors(
-    primary = Color(0xFFE67E22),
+    primary = Color(0xFF8DECB4),
     text = Color(0xFF000000),
     background = Color(0xFFF5F5F5),
     success = Color(0xFF2ECC71),
@@ -31,10 +31,10 @@ fun lightColors() = ThemeColors(
 )
 
 fun darkColors() = ThemeColors(
-    primary = Color(0xFFDF6900),
+    primary = Color(0xFF141E46),
     text = Color(0xFFFFFFFF),
-    background = Color(0xFF353B48),
-    success = Color(0xFF44BD32),
-    error = Color(0xFFC23616),
+    background = Color(0xFF151515),
+    success = Color(0xFF41B06E),
+    error = Color(0xFFC73659),
     isLight = false,
 )
