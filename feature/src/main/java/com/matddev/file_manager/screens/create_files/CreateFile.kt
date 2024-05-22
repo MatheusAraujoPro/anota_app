@@ -11,6 +11,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
+import com.matddev.anotaapp.theme.Theme
 import org.koin.androidx.compose.getViewModel
 
 
@@ -27,15 +28,24 @@ fun CrateFileScreen(
         verticalArrangement = Arrangement.Center,
         modifier = Modifier.fillMaxSize()
     ) {
-        if(viewState.value.result)
+        if (viewState.value.result)
             Text(text = "Deu certo")
-        Button(onClick = {
-           action(CreateFileAction.CreateFile(
-               lines = listOf("primeira linha", "segunda linha"),
-               context = context
-           ))
-        }) {
-            Text(text = "Gravar arquiivo")
+        Button(
+            onClick = {
+                action(
+                    CreateFileAction.CreateFile(
+                        lines = listOf("primeira linha", "segunda linha"),
+                        context = context
+                    )
+                )
+            }
+        ) {
+            Text(
+                text = "Gravar arquiivo",
+                style = Theme.typography.body.copy(
+                    color = Theme.colors.primary
+                )
+            )
         }
     }
 }
