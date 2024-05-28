@@ -41,6 +41,7 @@ dependencies {
     implementation(libs.paging.compose)
     implementation(libs.android.room)
     implementation(libs.android.roomKtx)
+    debugImplementation(libs.androidx.ui.tooling)
     kapt(libs.android.room.compiler)
     implementation(libs.lottie)
 

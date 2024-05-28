@@ -53,5 +53,7 @@ fun CrateFileScreen(
 @Preview
 @Composable
 private fun CrateFileScreenPreview() {
-    CrateFileScreen()
+    CrateFileScreen(
+        viewModel = CreateFileViewModel()
+    )
 }
