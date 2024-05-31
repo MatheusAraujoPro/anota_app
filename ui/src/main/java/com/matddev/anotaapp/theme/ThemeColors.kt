@@ -10,6 +10,7 @@ class ThemeColors(
     primary: Color,
     text: Color,
     background: Color,
+    backgroundComponent: Color,
     success: Color,
     error: Color,
     isLight: Boolean,
@@ -29,6 +30,9 @@ class ThemeColors(
     var background by mutableStateOf(background)
         private set
 
+    var backgroundComponent by mutableStateOf(backgroundComponent)
+        private set
+
     var isLight by mutableStateOf(isLight)
         private set
 
@@ -36,6 +40,7 @@ class ThemeColors(
         primary: Color = this.primary,
         text: Color = this.text,
         background: Color = this.background,
+        backgroundComponent: Color = this.backgroundComponent,
         success: Color = this.success,
         error: Color = this.error,
         isLight: Boolean = this.isLight,
@@ -43,6 +48,7 @@ class ThemeColors(
         primary = primary,
         text = text,
         background = background,
+        backgroundComponent = backgroundComponent,
         success = success,
         error = error,
         isLight = isLight,
