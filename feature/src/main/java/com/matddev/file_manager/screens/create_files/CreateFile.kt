@@ -30,12 +30,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.matddev.anotaapp.components.textfield.DefaultTextField
+import com.matddev.anotaapp.feature.R
 import com.matddev.anotaapp.theme.Theme
 import com.matddev.anotaapp.theme.Theme.colors
 import org.koin.androidx.compose.getViewModel
@@ -86,7 +88,7 @@ fun CrateFileScreen(
             color = colors.text
         )
         Summary(
-            descriptionText = "Total Gasto",
+            descriptionText = stringResource(R.string.total_spent),
             valueText = "$25,00"
         )
         Spacer(modifier = Modifier.weight(1f))
@@ -170,7 +172,7 @@ private fun Summary(
 @Composable
 private fun Header() {
     Text(
-        text = "Contas do mês",
+        text = stringResource(R.string.month_extract),
         style = Theme.typography.title,
         modifier = Modifier.padding(top = 16.dp)
     )

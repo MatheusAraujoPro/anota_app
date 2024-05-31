@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Create File Screen    -->
+    <string name="month_extract">Contas do mês</string>
+    <string name="total_spent">Total Gasto</string>
+</resources>
