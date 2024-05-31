@@ -121,7 +121,6 @@ private fun SearchBar(
                 containerColor = Color.White,
                 focusedIndicatorColor = Color.Transparent,
                 unfocusedIndicatorColor = Color.Transparent,
-                textColor = Color.Black
             ),
             shape = RoundedCornerShape(8.dp),
             maxLines = 1,
