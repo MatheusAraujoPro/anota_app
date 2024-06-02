@@ -15,10 +15,15 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Add
+import androidx.compose.material.icons.rounded.ArrowBack
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
+import androidx.compose.material3.ModalBottomSheet
+import androidx.compose.material3.SheetValue
 import androidx.compose.material3.Text
+import androidx.compose.material3.rememberStandardBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -40,20 +45,29 @@ import com.matddev.anotaapp.components.textfield.DefaultTextField
 import com.matddev.anotaapp.feature.R
 import com.matddev.anotaapp.theme.Theme
 import com.matddev.anotaapp.theme.Theme.colors
+import com.matddev.file_manager.screens.create_files.dialogs.ExtractDialog
 import org.koin.androidx.compose.getViewModel
 
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CrateFileScreen(
     viewModel: CreateFileViewModel = getViewModel(),
 ) {
     val context = LocalContext.current
     val action = viewModel::dispatcher
-    val viewState = viewModel.viewState.collectAsState()
+    val viewState by viewModel.viewState.collectAsState()
+
+    var inputDescriptionText by remember { mutableStateOf("") }
+    var inputValueText by remember { mutableStateOf("") }
 
     var descriptionText by remember { mutableStateOf("") }
     var valueText by remember { mutableStateOf("") }
     var totalValueText by remember { mutableStateOf("") }
+    val sheetState = rememberStandardBottomSheetState(
+        initialValue = SheetValue.Expanded,
+        skipHiddenState = false
+    )
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -63,6 +77,15 @@ fun CrateFileScreen(
             .padding(start = 6.dp)
             .fillMaxSize()
     ) {
+        Icon(
+            imageVector = Icons.Rounded.ArrowBack,
+            contentDescription = null,
+            tint = colors.text,
+            modifier = Modifier
+                .padding(start = 16.dp, top = 16.dp)
+                .align(Alignment.Start)
+        )
+
         Header()
         SequenceOfTrianglesShape(
             color = colors.backgroundComponent,
@@ -95,13 +118,47 @@ fun CrateFileScreen(
         FloatingActionButton(
             modifier = Modifier.padding(bottom = 16.dp),
             shape = RoundedCornerShape(50),
-            onClick = { /*TODO*/ },
+            onClick = {
+                action(CreateFileAction.OpenHideBottomSheet)
+            },
             containerColor = colors.text
         ) {
             Icon(
                 imageVector = Icons.Rounded.Add,
                 contentDescription = null,
                 tint = colors.background
+            )
+        }
+
+        if (viewState.shouldShowBottomSheet) {
+            ModalBottomSheet(
+                onDismissRequest = {
+                    action(CreateFileAction.OpenHideBottomSheet)
+                },
+                sheetState = sheetState,
+
+                ) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(500.dp)
+                        .padding(bottom = 48.dp)
+                ) {
+                    Text(text = "Hello")
+                }
+            }
+        }
+        if (viewState.shouldShowDialog) {
+            ExtractDialog(
+                action = action,
+                inputDescriptionText = inputDescriptionText,
+                inputValueText = inputValueText,
+                descriptionTextOnChange = {
+                    inputDescriptionText = it
+                },
+                valueTextOnChange = {
+                    inputValueText = it
+                }
             )
         }
     }
