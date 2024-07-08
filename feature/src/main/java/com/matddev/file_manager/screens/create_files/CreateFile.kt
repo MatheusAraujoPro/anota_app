@@ -12,6 +12,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Add
@@ -36,16 +38,15 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.matddev.anotaapp.components.textfield.DefaultTextField
+import com.matddev.anotaapp.components.card.ExtractItem
 import com.matddev.anotaapp.feature.R
 import com.matddev.anotaapp.theme.Theme
 import com.matddev.anotaapp.theme.Theme.colors
 import com.matddev.file_manager.screens.create_files.dialogs.ExtractDialog
+import com.matddev.model.Extract
 import org.koin.androidx.compose.getViewModel
 
 
@@ -61,9 +62,12 @@ fun CrateFileScreen(
     var inputDescriptionText by remember { mutableStateOf("") }
     var inputValueText by remember { mutableStateOf("") }
 
-    var descriptionText by remember { mutableStateOf("") }
-    var valueText by remember { mutableStateOf("") }
-    var totalValueText by remember { mutableStateOf("") }
+//    var descriptionText by remember { mutableStateOf("") }
+//    var valueText by remember { mutableStateOf("") }
+//    var totalValueText by remember { mutableStateOf("") }
+    var listOfExtract by remember {
+        mutableStateOf(mutableListOf<Extract>())
+    }
     val sheetState = rememberStandardBottomSheetState(
         initialValue = SheetValue.Expanded,
         skipHiddenState = false
@@ -96,17 +100,14 @@ fun CrateFileScreen(
 
         )
         ExtractInformation(
-            descriptionText = descriptionText,
-            valueText = valueText,
-            onChangeDescription = {
-                descriptionText = it
-            },
-            onChangeValue = {
-                valueText = it
-            }
+            extractList = listOfExtract
         )
         HorizontalDivider(
-            modifier = Modifier.padding(start = 24.dp, end = 24.dp, top = 8.dp),
+            modifier = Modifier.padding(
+                start = 24.dp,
+                end = 24.dp,
+                top = 8.dp
+            ),
             thickness = 2.dp,
             color = colors.text
         )
@@ -158,6 +159,9 @@ fun CrateFileScreen(
                 },
                 valueTextOnChange = {
                     inputValueText = it
+                },
+                onClick = { descriptionText, value ->
+                    listOfExtract.add(Extract(description = descriptionText, value = value))
                 }
             )
         }
@@ -166,10 +170,7 @@ fun CrateFileScreen(
 
 @Composable
 private fun ExtractInformation(
-    descriptionText: String,
-    valueText: String,
-    onChangeDescription: (String) -> Unit,
-    onChangeValue: (String) -> Unit
+    extractList: MutableList<Extract> = mutableListOf()
 ) {
     Row(
         modifier = Modifier
@@ -181,24 +182,11 @@ private fun ExtractInformation(
             .fillMaxHeight(0.7f)
             .fillMaxWidth(),
     ) {
-        DefaultTextField(
-            textValue = descriptionText,
-            type = KeyboardType.Text,
-            modifier = Modifier.weight(3f),
-            textAlign = TextAlign.Start,
-            onChange = {
-                onChangeDescription.invoke(it)
+        LazyColumn {
+            items(extractList) { extract ->
+                ExtractItem(description = extract.description, value = extract.value)
             }
-        )
-        DefaultTextField(
-            textValue = valueText,
-            type = KeyboardType.Number,
-            modifier = Modifier.weight(1f),
-            textAlign = TextAlign.End,
-            onChange = {
-                onChangeValue.invoke(it)
-            }
-        )
+        }
     }
 }
 
@@ -320,8 +308,8 @@ private fun SequenceOfTrianglesShape(
             color = color
         )
     }
-
 }
+
 
 @Preview(
     device = Devices.PIXEL_XL,

@@ -23,7 +23,8 @@ fun ExtractDialog(
     inputDescriptionText: String,
     inputValueText: String,
     descriptionTextOnChange: (String) -> Unit,
-    valueTextOnChange: (String) -> Unit
+    valueTextOnChange: (String) -> Unit,
+    onClick: (String, String) -> Unit
 ) {
     Dialog(onDismissRequest = {
         action(CreateFileAction.OpenHideBottomSheet)
@@ -59,7 +60,9 @@ fun ExtractDialog(
                     }
                 )
                 Button(
-                    onClick = { /*TODO*/ },
+                    onClick = {
+                        onClick.invoke(inputDescriptionText, inputValueText)
+                    },
                     shape = RoundedCornerShape(8.dp),
                     colors = ButtonDefaults.buttonColors(
                         containerColor = colors.text

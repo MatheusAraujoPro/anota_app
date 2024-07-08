@@ -30,6 +30,11 @@ data class ThemeTypography(
         fontFamily = fonts,
         fontWeight = FontWeight.Light,
         fontSize = 16.sp
+    ),
+    val bodySm: TextStyle = TextStyle(
+        fontFamily = fonts,
+        fontWeight = FontWeight.Light,
+        fontSize = 12.sp
     )
 )
 
