@@ -28,6 +28,7 @@ dependencies {
     implementation(libs.androidx.compose.ui.tooling)
     implementation(libs.androidx.compose.material3)
     implementation(libs.coil)
+    debugImplementation(libs.androidx.ui.tooling)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test)

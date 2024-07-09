@@ -19,12 +19,22 @@ data class ThemeTypography(
     val title: TextStyle = TextStyle(
         fontFamily = fonts,
         fontWeight = FontWeight.Bold,
-        fontSize = 24.sp
+        fontSize = 32.sp
+    ),
+    val subTitle: TextStyle = TextStyle(
+        fontFamily = fonts,
+        fontWeight = FontWeight.Medium,
+        fontSize = 18.sp
     ),
     val body: TextStyle = TextStyle(
         fontFamily = fonts,
         fontWeight = FontWeight.Light,
         fontSize = 16.sp
+    ),
+    val bodySm: TextStyle = TextStyle(
+        fontFamily = fonts,
+        fontWeight = FontWeight.Light,
+        fontSize = 12.sp
     )
 )
 
