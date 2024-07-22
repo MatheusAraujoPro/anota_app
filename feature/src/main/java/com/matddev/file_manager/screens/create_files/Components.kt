@@ -1,13 +1,12 @@
 package com.matddev.file_manager.screens.create_files
 
-import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -30,7 +29,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.matddev.anotaapp.feature.R
@@ -131,17 +129,21 @@ fun HeaderTexts() {
 }
 
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Content(
     itemsList: MutableList<Extract>
 ) {
-    LazyColumn {
-        items(itemsList) { item ->
-            ContentItem(
-                description = item.description,
-                value = item.value
-            )
+    Box(
+        modifier = Modifier
+            .padding(horizontal = 20.dp)
+    ) {
+        LazyColumn {
+            items(itemsList) { item ->
+                ContentItem(
+                    description = item.description,
+                    value = item.value
+                )
+            }
         }
     }
 }
@@ -156,15 +158,8 @@ fun ContentItem(
         confirmValueChange = {
             when (it) {
                 SwipeToDismissBoxValue.Settled -> return@rememberSwipeToDismissBoxState false
-                SwipeToDismissBoxValue.StartToEnd -> {
-                    Log.d("teste", "Swipou pra direita")
-                    true
-                }
-
-                SwipeToDismissBoxValue.EndToStart -> {
-                    Log.d("teste", "Swipou pra esquerda")
-                    true
-                }
+                SwipeToDismissBoxValue.StartToEnd -> return@rememberSwipeToDismissBoxState false
+                SwipeToDismissBoxValue.EndToStart -> true
             }
         },
         positionalThreshold = { it * .25f }
@@ -172,26 +167,27 @@ fun ContentItem(
     SwipeToDismissBox(
         state = dismissState,
         modifier = Modifier
-            .background(color = colors.backgroundComponent)
+            .background(color = colors.backgroundComponent, shape = RoundedCornerShape(8.dp))
             .fillMaxWidth(),
         backgroundContent = { DismissBackground(dismissState) },
         content = {
             Row(
                 modifier = Modifier
-                    .background(color = colors.background)
-                    .fillMaxWidth()
-                    .padding(horizontal = 16.dp),
+                    .background(
+                        color = colors.backgroundComponent,
+                        shape = RoundedCornerShape(8.dp)
+                    )
+                    .padding(horizontal = 2.dp, vertical = 16.dp)
+                    .fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Text(
                     text = description,
                     style = Theme.typography.body,
-                    modifier = Modifier.padding(top = 16.dp)
                 )
                 Text(
                     text = value,
                     style = Theme.typography.body,
-                    modifier = Modifier.padding(top = 16.dp)
                 )
             }
         }
@@ -210,7 +206,7 @@ fun DismissBackground(dismissState: SwipeToDismissBoxState) {
     Row(
         modifier = Modifier
             .fillMaxSize()
-            .background(color)
+            .background(color, shape = RoundedCornerShape(8.dp))
             .padding(12.dp, 8.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
