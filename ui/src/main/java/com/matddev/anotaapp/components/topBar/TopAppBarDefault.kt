@@ -99,7 +99,7 @@ private fun SearchBar(
     ) {
         Icon(
             imageVector = Icons.Default.ArrowBack,
-            contentDescription = stringResource(R.string.button_go_back_text),
+            contentDescription = "",
             modifier = Modifier.clickable {
                 handleBarVisibility()
             },
@@ -112,7 +112,7 @@ private fun SearchBar(
                     fraction = 0.955f
                 ),
             placeholder = {
-                Text(text = stringResource(R.string.text_find_placeholder))
+              ""
             },
             onValueChange = { value ->
                 handleSearchRepo(value)
