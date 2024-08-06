@@ -19,6 +19,7 @@ class CreateFileViewModel : ViewModel(), KoinComponent {
             )
 
             CreateFileAction.OpenHideBottomSheet -> openHideBottomSheet()
+            CreateFileAction.OpenHideDialog -> openHideBottomSheet()
         }
     }
 
@@ -33,7 +34,7 @@ class CreateFileViewModel : ViewModel(), KoinComponent {
     }
 
     private fun openHideBottomSheet() {
-        if (viewState.value.shouldShowDialog == true)
+        if (viewState.value.shouldShowDialog)
             viewState.value = viewState.value.copy(
                 shouldShowDialog = false
             )
@@ -41,6 +42,5 @@ class CreateFileViewModel : ViewModel(), KoinComponent {
             viewState.value = viewState.value.copy(
                 shouldShowDialog = true
             )
-
     }
 }

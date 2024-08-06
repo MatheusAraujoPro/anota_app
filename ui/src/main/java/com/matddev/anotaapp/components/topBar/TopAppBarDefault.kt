@@ -24,13 +24,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.matddev.anotaapp.components.bottomBar.BottomBarScreens
-import com.matddev.anotaapp.ui.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -41,7 +39,7 @@ fun TopAppBarDefault(
     handleSearchRepo: (repoName: String) -> Unit?,
     route: String
 ) {
-    val isRouteList = adjustTitle(route) == BottomBarScreens.List.title
+    val isRouteList = adjustTitle(route) == BottomBarScreens.Home.title
     TopAppBar(
         modifier = Modifier
             .height(68.dp)
@@ -99,7 +97,7 @@ private fun SearchBar(
     ) {
         Icon(
             imageVector = Icons.Default.ArrowBack,
-            contentDescription = stringResource(R.string.button_go_back_text),
+            contentDescription = "",
             modifier = Modifier.clickable {
                 handleBarVisibility()
             },
@@ -112,7 +110,7 @@ private fun SearchBar(
                     fraction = 0.955f
                 ),
             placeholder = {
-                Text(text = stringResource(R.string.text_find_placeholder))
+              ""
             },
             onValueChange = { value ->
                 handleSearchRepo(value)
@@ -130,8 +128,8 @@ private fun SearchBar(
 
 private fun adjustTitle(route: String): String {
     return when (route) {
-        "list" -> BottomBarScreens.List.title
-        "bookmark" -> BottomBarScreens.Favorite.title
+        "list" -> BottomBarScreens.Home.title
+        "bookmark" -> BottomBarScreens.Bills.title
         else -> ""
     }
 }
