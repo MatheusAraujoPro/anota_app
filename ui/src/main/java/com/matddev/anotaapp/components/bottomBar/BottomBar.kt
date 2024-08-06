@@ -24,8 +24,9 @@ import androidx.compose.ui.unit.sp
 @Composable
 fun BottomBar(navigate: (route: String) -> Unit) {
     val screens = listOf(
-        BottomBarScreens.List,
-        BottomBarScreens.Favorite
+        BottomBarScreens.Home,
+        BottomBarScreens.Bills,
+        BottomBarScreens.Summary
     )
 
     Row(
@@ -33,7 +34,7 @@ fun BottomBar(navigate: (route: String) -> Unit) {
             .padding(top = 8.dp)
             .background(White)
             .fillMaxWidth(),
-        horizontalArrangement = Arrangement.SpaceAround,
+        horizontalArrangement = Arrangement.SpaceEvenly,
         verticalAlignment = Alignment.CenterVertically
     ) {
         screens.forEach { screen ->
@@ -56,10 +57,10 @@ fun RowScope.AddItem(
                 color = White,
                 shape = CircleShape
             )
-//            .height(52.dp)
+
             .clickable(onClick = {
                 navigate.invoke(screen.route)
-            }),
+            })
     ) {
         Column(
             modifier = Modifier
